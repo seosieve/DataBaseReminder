@@ -12,12 +12,15 @@ class ListView: BaseView {
     
     let listTableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = .clear
+        tableView.separatorColor = Colors.contentBlack
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.register(ListTableViewCell.self, forCellReuseIdentifier: ListTableViewCell.identifier)
         return tableView
     }()
     
     override func configureView() {
-        self.backgroundColor = .black
+        self.backgroundColor = Colors.mainBlack
     }
     
     override func configureSubViews() {
@@ -26,7 +29,8 @@ class ListView: BaseView {
     
     override func configureConstraints() {
         listTableView.snp.makeConstraints { make in
-            make.edges.equalTo(self.safeAreaLayoutGuide)
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(10)
+            make.horizontalEdges.bottom.equalToSuperview()
         }
     }
 }

@@ -20,6 +20,20 @@
 		4E0F67812C340D4600BCE025 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67802C340D4600BCE025 /* BaseTableViewCell.swift */; };
 		4E0F67842C340DD500BCE025 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4E0F67832C340DD500BCE025 /* SnapKit */; };
 		4E0F67872C340E5E00BCE025 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4E0F67862C340E5E00BCE025 /* RealmSwift */; };
+		4E0F678A2C35419100BCE025 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67892C35419100BCE025 /* Colors.swift */; };
+		4E0F678C2C3543C900BCE025 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F678B2C3543C900BCE025 /* RegisterViewController.swift */; };
+		4E0F678E2C3544BC00BCE025 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F678D2C3544BC00BCE025 /* RegisterView.swift */; };
+		4E0F67902C35497A00BCE025 /* UINavigationController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F678F2C35497A00BCE025 /* UINavigationController + Extension.swift */; };
+		4E0F67922C354FAA00BCE025 /* RegisterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67912C354FAA00BCE025 /* RegisterTableViewCell.swift */; };
+		4E0F67942C356F0100BCE025 /* Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67932C356F0100BCE025 /* Names.swift */; };
+		4E0F67972C35721D00BCE025 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67962C35721D00BCE025 /* DateView.swift */; };
+		4E0F67992C3574BF00BCE025 /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67982C3574BF00BCE025 /* DateViewController.swift */; };
+		4E0F679D2C35781300BCE025 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F679C2C35781300BCE025 /* TagView.swift */; };
+		4E0F679F2C35781E00BCE025 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F679E2C35781E00BCE025 /* TagViewController.swift */; };
+		4E0F67A12C35783000BCE025 /* PriorityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67A02C35783000BCE025 /* PriorityView.swift */; };
+		4E0F67A32C35783C00BCE025 /* PriorityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67A22C35783C00BCE025 /* PriorityViewController.swift */; };
+		4E0F67A52C357BC500BCE025 /* UIDatePicker + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67A42C357BC500BCE025 /* UIDatePicker + Extension.swift */; };
+		4E0F67A82C3587D000BCE025 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67A72C3587D000BCE025 /* Reminder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +50,20 @@
 		4E0F677C2C340C1F00BCE025 /* NSObjectProtocol + Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObjectProtocol + Extenstion.swift"; sourceTree = "<group>"; };
 		4E0F677E2C340D2B00BCE025 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		4E0F67802C340D4600BCE025 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		4E0F67892C35419100BCE025 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		4E0F678B2C3543C900BCE025 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		4E0F678D2C3544BC00BCE025 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		4E0F678F2C35497A00BCE025 /* UINavigationController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + Extension.swift"; sourceTree = "<group>"; };
+		4E0F67912C354FAA00BCE025 /* RegisterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTableViewCell.swift; sourceTree = "<group>"; };
+		4E0F67932C356F0100BCE025 /* Names.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Names.swift; sourceTree = "<group>"; };
+		4E0F67962C35721D00BCE025 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
+		4E0F67982C3574BF00BCE025 /* DateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
+		4E0F679C2C35781300BCE025 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
+		4E0F679E2C35781E00BCE025 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
+		4E0F67A02C35783000BCE025 /* PriorityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityView.swift; sourceTree = "<group>"; };
+		4E0F67A22C35783C00BCE025 /* PriorityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityViewController.swift; sourceTree = "<group>"; };
+		4E0F67A42C357BC500BCE025 /* UIDatePicker + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDatePicker + Extension.swift"; sourceTree = "<group>"; };
+		4E0F67A72C3587D000BCE025 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +126,7 @@
 		4E0F676F2C3408C100BCE025 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4E0F67882C35418500BCE025 /* NameSpace */,
 				4E0F677B2C340C0500BCE025 /* Extenstion */,
 				4E0F67622C34071C00BCE025 /* Assets.xcassets */,
 				4E0F67672C34071C00BCE025 /* Info.plist */,
@@ -108,9 +137,13 @@
 		4E0F67702C3408D700BCE025 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				4E0F67A62C3587AA00BCE025 /* DataBase */,
 				4E0F67742C34097A00BCE025 /* Base */,
 				4E0F67712C3408EF00BCE025 /* List */,
 				4E0F67732C34090600BCE025 /* Register */,
+				4E0F67952C35720300BCE025 /* Date */,
+				4E0F679A2C3577F300BCE025 /* Tag */,
+				4E0F679B2C3577F600BCE025 /* Priority */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -128,6 +161,9 @@
 		4E0F67732C34090600BCE025 /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				4E0F678D2C3544BC00BCE025 /* RegisterView.swift */,
+				4E0F678B2C3543C900BCE025 /* RegisterViewController.swift */,
+				4E0F67912C354FAA00BCE025 /* RegisterTableViewCell.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -146,8 +182,54 @@
 			isa = PBXGroup;
 			children = (
 				4E0F677C2C340C1F00BCE025 /* NSObjectProtocol + Extenstion.swift */,
+				4E0F678F2C35497A00BCE025 /* UINavigationController + Extension.swift */,
+				4E0F67A42C357BC500BCE025 /* UIDatePicker + Extension.swift */,
 			);
 			path = Extenstion;
+			sourceTree = "<group>";
+		};
+		4E0F67882C35418500BCE025 /* NameSpace */ = {
+			isa = PBXGroup;
+			children = (
+				4E0F67892C35419100BCE025 /* Colors.swift */,
+				4E0F67932C356F0100BCE025 /* Names.swift */,
+			);
+			path = NameSpace;
+			sourceTree = "<group>";
+		};
+		4E0F67952C35720300BCE025 /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				4E0F67962C35721D00BCE025 /* DateView.swift */,
+				4E0F67982C3574BF00BCE025 /* DateViewController.swift */,
+			);
+			path = Date;
+			sourceTree = "<group>";
+		};
+		4E0F679A2C3577F300BCE025 /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				4E0F679C2C35781300BCE025 /* TagView.swift */,
+				4E0F679E2C35781E00BCE025 /* TagViewController.swift */,
+			);
+			path = Tag;
+			sourceTree = "<group>";
+		};
+		4E0F679B2C3577F600BCE025 /* Priority */ = {
+			isa = PBXGroup;
+			children = (
+				4E0F67A02C35783000BCE025 /* PriorityView.swift */,
+				4E0F67A22C35783C00BCE025 /* PriorityViewController.swift */,
+			);
+			path = Priority;
+			sourceTree = "<group>";
+		};
+		4E0F67A62C3587AA00BCE025 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				4E0F67A72C3587D000BCE025 /* Reminder.swift */,
+			);
+			path = DataBase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,15 +310,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E0F67942C356F0100BCE025 /* Names.swift in Sources */,
 				4E0F675E2C34071A00BCE025 /* ListViewController.swift in Sources */,
+				4E0F67A12C35783000BCE025 /* PriorityView.swift in Sources */,
+				4E0F67A82C3587D000BCE025 /* Reminder.swift in Sources */,
+				4E0F67972C35721D00BCE025 /* DateView.swift in Sources */,
+				4E0F67902C35497A00BCE025 /* UINavigationController + Extension.swift in Sources */,
+				4E0F678C2C3543C900BCE025 /* RegisterViewController.swift in Sources */,
+				4E0F678A2C35419100BCE025 /* Colors.swift in Sources */,
 				4E0F677F2C340D2B00BCE025 /* ListTableViewCell.swift in Sources */,
 				4E0F675A2C34071A00BCE025 /* AppDelegate.swift in Sources */,
 				4E0F677D2C340C1F00BCE025 /* NSObjectProtocol + Extenstion.swift in Sources */,
 				4E0F67812C340D4600BCE025 /* BaseTableViewCell.swift in Sources */,
 				4E0F675C2C34071A00BCE025 /* SceneDelegate.swift in Sources */,
 				4E0F67782C34099D00BCE025 /* ListView.swift in Sources */,
+				4E0F67A52C357BC500BCE025 /* UIDatePicker + Extension.swift in Sources */,
+				4E0F679F2C35781E00BCE025 /* TagViewController.swift in Sources */,
+				4E0F67922C354FAA00BCE025 /* RegisterTableViewCell.swift in Sources */,
+				4E0F678E2C3544BC00BCE025 /* RegisterView.swift in Sources */,
 				4E0F67762C34098200BCE025 /* BaseView.swift in Sources */,
+				4E0F67A32C35783C00BCE025 /* PriorityViewController.swift in Sources */,
 				4E0F677A2C340A3C00BCE025 /* BaseViewController.swift in Sources */,
+				4E0F67992C3574BF00BCE025 /* DateViewController.swift in Sources */,
+				4E0F679D2C35781300BCE025 /* TagView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

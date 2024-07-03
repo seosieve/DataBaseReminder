@@ -20,7 +20,6 @@ class BaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("addd")
         configureView()
     }
     
