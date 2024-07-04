@@ -7,21 +7,14 @@
 
 import UIKit
 
-class PriorityViewController: BaseViewController {
-    
-    private let customView: PriorityView!
+class PriorityViewController: BaseViewController<PriorityView> {
     
     private var priority = "0"
     
     var transferData: ((String) -> Void)?
     
-    init(view: PriorityView) {
-        self.customView = view
-        super.init()
-    }
-    
-    override func loadView() {
-        self.view = customView
+    override init(view: PriorityView) {
+        super.init(view: view)
     }
     
     override func configureView() {

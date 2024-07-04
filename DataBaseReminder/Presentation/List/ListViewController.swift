@@ -8,21 +8,14 @@
 import UIKit
 import RealmSwift
 
-final class ListViewController: BaseViewController {
-    
-    private let customView: ListView!
+final class ListViewController: BaseViewController<ListView> {
     
     let list: Results<Reminder>!
     var realm = try! Realm()
     
-    init(view: ListView) {
-        self.customView = view
-        list = realm.objects(Reminder.self).sorted(byKeyPath: "date")
-        super.init()
-    }
-    
-    override func loadView() {
-        self.view = customView
+    override init(view: ListView) {
+        self.list = realm.objects(Reminder.self).sorted(byKeyPath: "date")
+        super.init(view: view)
     }
     
     override func configureView() {

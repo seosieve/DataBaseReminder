@@ -7,21 +7,14 @@
 
 import UIKit
 
-class TagViewController: BaseViewController {
-    
-    private let customView: TagView!
+class TagViewController: BaseViewController<TagView> {
     
     private var tag = String()
     
     var transferData: ((String) -> Void)?
     
-    init(view: TagView) {
-        self.customView = view
-        super.init()
-    }
-    
-    override func loadView() {
-        self.view = customView
+    override init(view: TagView) {
+        super.init(view: view)
     }
     
     override func configureView() {

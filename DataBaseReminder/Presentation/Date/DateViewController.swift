@@ -7,21 +7,14 @@
 
 import UIKit
 
-class DateViewController: BaseViewController {
-    
-    private let customView: DateView!
+class DateViewController: BaseViewController<DateView> {
     
     private var date = String()
     
     var transferData: ((String) -> Void)?
     
-    init(view: DateView) {
-        self.customView = view
-        super.init()
-    }
-    
-    override func loadView() {
-        self.view = customView
+    override init(view: DateView) {
+        super.init(view: view)
     }
     
     override func configureView() {

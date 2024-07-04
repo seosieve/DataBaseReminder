@@ -8,9 +8,7 @@
 import UIKit
 import RealmSwift
 
-class RegisterViewController: BaseViewController {
-    
-    private let customView: RegisterView!
+class RegisterViewController: BaseViewController<RegisterView> {
     
     let realm = try! Realm()
     
@@ -28,13 +26,8 @@ class RegisterViewController: BaseViewController {
     
     lazy var addButton = UIBarButtonItem(title: "추가", style: .plain, target: self, action: #selector(addButtonPressed))
     
-    init(view: RegisterView) {
-        self.customView = view
-        super.init()
-    }
-    
-    override func loadView() {
-        self.view = customView
+    override init(view: RegisterView) {
+        super.init(view: view)
     }
     
     override func configureView() {

@@ -34,7 +34,22 @@
 		4E0F67A32C35783C00BCE025 /* PriorityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67A22C35783C00BCE025 /* PriorityViewController.swift */; };
 		4E0F67A52C357BC500BCE025 /* UIDatePicker + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67A42C357BC500BCE025 /* UIDatePicker + Extension.swift */; };
 		4E0F67A82C3587D000BCE025 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67A72C3587D000BCE025 /* Reminder.swift */; };
+		4E0F67B02C3691D100BCE025 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 4E0F67862C340E5E00BCE025 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4E0F67B12C3691D100BCE025 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4E0F67B02C3691D100BCE025 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4E0F67562C34071A00BCE025 /* DataBaseReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataBaseReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -242,6 +257,7 @@
 				4E0F67522C34071A00BCE025 /* Sources */,
 				4E0F67532C34071A00BCE025 /* Frameworks */,
 				4E0F67542C34071A00BCE025 /* Resources */,
+				4E0F67B12C3691D100BCE025 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

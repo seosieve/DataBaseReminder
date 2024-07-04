@@ -7,15 +7,22 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
+class BaseViewController<CustomView: BaseView>: UIViewController {
     
-    init() {
+    let customView: CustomView!
+    
+    init(view: CustomView) {
+        self.customView = view
         super.init(nibName: nil, bundle: nil)
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
+        self.view = customView
     }
     
     override func viewDidLoad() {
