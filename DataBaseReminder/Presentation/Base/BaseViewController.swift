@@ -9,7 +9,7 @@ import UIKit
 
 class BaseViewController<CustomView: BaseView>: UIViewController {
     
-    let customView: CustomView!
+    let customView: CustomView
     
     init(view: CustomView) {
         self.customView = view

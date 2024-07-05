@@ -5,26 +5,38 @@
 //  Created by 서충원 on 7/3/24.
 //
 
-import Foundation
+import UIKit
 
 enum Names {
-    enum registerTitle: Int {
-        case date
-        case tag
-        case priority
-        case image
+    enum registerNames: String, CaseIterable {
+        case date = "마감일"
+        case tag = "태그"
+        case priority = "우선 순위"
+        case image = "이미지 추가"
+    }
+    
+    enum radioButtonNames {
+        case selected
+        case deselected
         
-        var name: String {
+        var image: UIImage? {
             switch self {
-            case .date:
-                return "마감일"
-            case .tag:
-                return "태그"
-            case .priority:
-                return "우선 순위"
-            case .image:
-                return "이미지 추가"
+            case .selected:
+                return UIImage(systemName: "circle.inset.filled")
+            case .deselected:
+                return UIImage(systemName: "circle")
             }
         }
+        
+        mutating func toggle() {
+            self = self == .selected ? .deselected : .selected
+        }
     }
+    
+//    
+//    "calender.badge.plus"
+//    "calender"
+//    "tray.fill"
+//    "flag"
+//    "checkmark"
 }

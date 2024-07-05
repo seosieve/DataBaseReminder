@@ -82,14 +82,15 @@ extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RegisterTableViewCell.identifier, for: indexPath) as? RegisterTableViewCell
         guard let cell else { return UITableViewCell() }
-        guard let title = Names.registerTitle(rawValue: indexPath.row)?.name else { return UITableViewCell() }
+        
+        let title = Names.registerNames.allCases[indexPath.row].rawValue
         cell.titleLabel.text = title
         cell.valueLabel.text = list[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let register = Names.registerTitle(rawValue: indexPath.row) else { return }
+        let register = Names.registerNames.allCases[indexPath.row]
         
         switch register {
         case .date:

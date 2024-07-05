@@ -11,12 +11,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let initialVC = UINavigationController(rootViewController: ListViewController(view: ListView()))
-        initialVC.setNavigationAppearance(color: Colors.mainBlack)
+        let initialVC = UINavigationController(rootViewController: BundleViewController(view: BundleView()))
+        initialVC.setNavigationAppearance(backgroundColor: Colors.mainBlack)
         window?.rootViewController = initialVC
         window?.makeKeyAndVisible()
     }

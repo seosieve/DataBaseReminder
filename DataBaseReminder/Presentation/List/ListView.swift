@@ -10,6 +10,22 @@ import SnapKit
 
 class ListView: BaseView {
     
+    let filterButtonItem = {
+        let button = UIBarButtonItem()
+        button.image = UIImage(systemName: "ellipsis.circle")
+        button.tintColor = Colors.contentBlue
+        button.style = .plain
+        return button
+    }()
+    
+    let addButtonItem = {
+        let button = UIBarButtonItem()
+        button.image = UIImage(systemName: "plus.circle")
+        button.tintColor = Colors.contentBlue
+        button.style = .plain
+        return button
+    }()
+    
     let listTableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
@@ -32,5 +48,11 @@ class ListView: BaseView {
             make.top.equalTo(self.safeAreaLayoutGuide).offset(10)
             make.horizontalEdges.bottom.equalToSuperview()
         }
+    }
+    
+    func configureNavigationController(_ vc: UIViewController) {
+        vc.navigationItem.title = "오늘"
+        vc.navigationItem.rightBarButtonItem = filterButtonItem
+        vc.navigationController?.navigationBar.tintColor = Colors.contentBlue
     }
 }
