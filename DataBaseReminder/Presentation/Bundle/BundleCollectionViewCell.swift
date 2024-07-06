@@ -74,4 +74,11 @@ class BundleCollectionViewCell: BaseCollectionViewCell {
             make.trailing.equalToSuperview().inset(15)
         }
     }
+    
+    func configureCell(bundle: Names.BundleNames, count: Int) {
+        iconContainerView.backgroundColor = bundle.color
+        iconImageView.image = bundle.image
+        titleLabel.text = bundle.title
+        countLabel.text = String(count)
+    }
 }

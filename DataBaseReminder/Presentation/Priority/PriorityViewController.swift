@@ -9,7 +9,7 @@ import UIKit
 
 class PriorityViewController: BaseViewController<PriorityView>, SubViewType {
     
-    private var priority: Int?
+    private var priority = 0
     var delegate: DataTransportDelegate?
     
     override func configureView() {

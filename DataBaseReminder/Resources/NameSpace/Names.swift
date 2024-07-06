@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 enum Names {
     enum registerNames: String, CaseIterable {

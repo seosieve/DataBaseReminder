@@ -25,6 +25,14 @@ class ListTableViewCell: BaseTableViewCell {
         return button
     }()
     
+    let priorityLabel = {
+        let label = UILabel()
+        label.text = "★★★"
+        label.textColor = Colors.contentBlue
+        label.font = .boldSystemFont(ofSize: 18)
+        return label
+    }()
+    
     let titleLabel = {
         let label = UILabel()
         label.text = "안녕안녕"
@@ -36,7 +44,15 @@ class ListTableViewCell: BaseTableViewCell {
     let descriptionLabel = {
         let label = UILabel()
         label.text = "예쁜 키캡 알아보기"
-        label.textColor = .systemGray3
+        label.textColor = Colors.descriptionBlack
+        label.font = .systemFont(ofSize: 14)
+        return label
+    }()
+    
+    let dueDateLabel = {
+        let label = UILabel()
+        label.text = "2024. 02. 20"
+        label.textColor = Colors.contentBlack
         label.font = .systemFont(ofSize: 14)
         return label
     }()
@@ -56,8 +72,10 @@ class ListTableViewCell: BaseTableViewCell {
 
     override func configureSubViews() {
         contentView.addSubview(radioButton)
+        contentView.addSubview(priorityLabel)
         contentView.addSubview(titleLabel)
         contentView.addSubview(descriptionLabel)
+        contentView.addSubview(dueDateLabel)
         contentView.addSubview(hashTagLabel)
     }
 
@@ -68,19 +86,30 @@ class ListTableViewCell: BaseTableViewCell {
             make.size.equalTo(34)
         }
         
-        titleLabel.snp.makeConstraints { make in
+        priorityLabel.snp.makeConstraints { make in
             make.centerY.equalTo(radioButton)
             make.leading.equalTo(radioButton.snp.trailing).offset(8)
         }
         
+        titleLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(radioButton)
+            make.leading.equalTo(priorityLabel.snp.trailing).offset(8)
+        }
+        
         descriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(12)
-            make.leading.equalTo(titleLabel)
+            make.top.equalTo(titleLabel.snp.bottom).offset(6)
+            make.leading.equalTo(priorityLabel)
+        }
+        
+        dueDateLabel.snp.makeConstraints { make in
+            make.top.equalTo(descriptionLabel.snp.bottom).offset(6)
+            make.leading.equalTo(descriptionLabel)
+            make.bottom.equalToSuperview().offset(-10)
         }
         
         hashTagLabel.snp.makeConstraints { make in
             make.top.equalTo(descriptionLabel.snp.bottom).offset(6)
-            make.leading.equalTo(descriptionLabel)
+            make.leading.equalTo(dueDateLabel.snp.trailing).offset(8)
             make.bottom.equalToSuperview().offset(-10)
         }
     }
@@ -90,5 +119,22 @@ class ListTableViewCell: BaseTableViewCell {
         sender.tintColor = color
         sender.isSelected.toggle()
         delegate?.radioButtonTapped(in: self)
+    }
+    
+    func configureCell(reminder: Reminder) {
+        if let priority = reminder.priority {
+            priorityLabel.text = String(repeating: "★", count: priority + 1)
+            titleLabel.snp.updateConstraints { make in
+                make.leading.equalTo(priorityLabel.snp.trailing).offset(8)
+            }
+        } else {
+            priorityLabel.text = String()
+            titleLabel.snp.updateConstraints { make in
+                make.leading.equalTo(priorityLabel.snp.trailing)
+            }
+        }
+        
+        titleLabel.text = reminder.title
+        descriptionLabel.text = reminder.memo
     }
 }

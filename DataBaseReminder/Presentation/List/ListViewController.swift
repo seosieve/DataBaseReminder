@@ -41,11 +41,10 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource, ListTa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier, for: indexPath) as? ListTableViewCell
         guard let cell else { return UITableViewCell() }
-        let data = list[indexPath.row]
         
+        let reminder = list[indexPath.row]
+        cell.configureCell(reminder: reminder)
         cell.delegate = self
-        cell.titleLabel.text = data.title
-        cell.descriptionLabel.text = data.memo
         
         return cell
     }
@@ -55,9 +54,18 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource, ListTa
             self.deleteAction(indexPath: indexPath)
             success(true)
         }
-        remove.backgroundColor = .systemPink.withAlphaComponent(0.6)
-        remove.image = UIImage(systemName: "trash")
-        return UISwipeActionsConfiguration(actions: [remove])
+       
+        let flag = UIContextualAction(style: .normal, title: nil) { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            self.deleteAction(indexPath: indexPath)
+            success(true)
+        }
+        
+        remove.backgroundColor = Colors.trashPink
+        flag.backgroundColor = Colors.flagOrange
+        remove.image = UIImage(systemName: "trash", withConfiguration: UIImage.SymbolConfiguration(weight: .medium))
+        flag.image = UIImage(systemName: "flag", withConfiguration: UIImage.SymbolConfiguration(weight: .medium))
+        
+        return UISwipeActionsConfiguration(actions: [remove, flag])
     }
     
     func deleteAction(indexPath: IndexPath) {

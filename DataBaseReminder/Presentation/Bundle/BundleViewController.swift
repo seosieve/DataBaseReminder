@@ -9,6 +9,8 @@ import UIKit
 
 final class BundleViewController: BaseViewController<BundleView> {
     
+    let repository = ReminderRepository()
+    
     override func configureView() {
         ///Configure Nav
         customView.filterButtonItem.target = self
@@ -17,7 +19,7 @@ final class BundleViewController: BaseViewController<BundleView> {
         ///TableView Delegate
         customView.bundleCollectionView.delegate = self
         customView.bundleCollectionView.dataSource = self
-        
+        ///AddButton
         customView.addButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
     }
     
@@ -27,6 +29,7 @@ final class BundleViewController: BaseViewController<BundleView> {
     
     @objc func addButtonPressed() {
         let vc = RegisterViewController(view: RegisterView(), model: RegisterModel())
+        vc.delegate = self
         let nav = UINavigationController(rootViewController: vc)
         nav.setNavigationAppearance(backgroundColor: Colors.subBlack)
         self.present(nav, animated: true)
@@ -42,17 +45,25 @@ extension BundleViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BundleCollectionViewCell.identifier, for: indexPath) as? BundleCollectionViewCell
         guard let cell else { return UICollectionViewCell() }
-
+        
         let bundle = Names.BundleNames.allCases[indexPath.row]
-        cell.iconContainerView.backgroundColor = bundle.color
-        cell.iconImageView.image = bundle.image
-        cell.titleLabel.text = bundle.title
+        let count = repository.filterObject(bundle: bundle).count
+        cell.configureCell(bundle: bundle, count: count)
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let bundle = Names.BundleNames.allCases[indexPath.row]
         let vc = ListViewController(view: ListView())
+        vc.navigationItem.title = bundle.title
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+//MARK: - ObjectAddDelegate
+extension BundleViewController: ObjectAddDelegate {
+    func objectAdded() {
+        customView.bundleCollectionView.reloadData()
     }
 }

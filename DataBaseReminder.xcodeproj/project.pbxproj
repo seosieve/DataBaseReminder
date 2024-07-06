@@ -47,6 +47,7 @@
 		4E0F67C62C392DB100BCE025 /* TransportProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67C52C392DB100BCE025 /* TransportProtocol.swift */; };
 		4E0F67CA2C39548E00BCE025 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67C92C39548E00BCE025 /* ImageView.swift */; };
 		4E0F67CC2C39549800BCE025 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67CB2C39549800BCE025 /* ImageViewController.swift */; };
+		4E0F67CE2C39799A00BCE025 /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67CD2C39799A00BCE025 /* Date + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -103,6 +104,7 @@
 		4E0F67C52C392DB100BCE025 /* TransportProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportProtocol.swift; sourceTree = "<group>"; };
 		4E0F67C92C39548E00BCE025 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		4E0F67CB2C39549800BCE025 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		4E0F67CD2C39799A00BCE025 /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +232,7 @@
 				4E0F67BF2C381AD700BCE025 /* UIViewController + Extension.swift */,
 				4E0F67C32C391CBB00BCE025 /* UIView + Extension.swift */,
 				4E0F67A42C357BC500BCE025 /* UIDatePicker + Extension.swift */,
+				4E0F67CD2C39799A00BCE025 /* Date + Extension.swift */,
 			);
 			path = Extenstion;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				4E0F67B82C37DD9300BCE025 /* BundleViewController.swift in Sources */,
 				4E0F678A2C35419100BCE025 /* Colors.swift in Sources */,
 				4E0F67BC2C37E15200BCE025 /* BundleCollectionViewCell.swift in Sources */,
+				4E0F67CE2C39799A00BCE025 /* Date + Extension.swift in Sources */,
 				4E0F677F2C340D2B00BCE025 /* ListTableViewCell.swift in Sources */,
 				4E0F675A2C34071A00BCE025 /* AppDelegate.swift in Sources */,
 				4E0F677D2C340C1F00BCE025 /* NSObjectProtocol + Extenstion.swift in Sources */,

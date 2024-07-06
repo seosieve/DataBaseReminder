@@ -51,7 +51,6 @@ class ListView: BaseView {
     }
     
     override func configureNavigationController(_ vc: UIViewController) {
-        vc.navigationItem.title = "오늘"
         vc.navigationItem.rightBarButtonItem = filterButtonItem
         vc.navigationController?.navigationBar.tintColor = Colors.mainBlue
     }

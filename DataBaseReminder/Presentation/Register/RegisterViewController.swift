@@ -8,10 +8,16 @@
 import UIKit
 import RealmSwift
 
+protocol ObjectAddDelegate: AnyObject {
+    func objectAdded()
+}
+
 class RegisterViewController: BaseViewController<RegisterView> {
     
     let repository = ReminderRepository()
     let model: RegisterModel
+    
+    weak var delegate: ObjectAddDelegate?
     
     var stringResultArr = Array(repeating: String(), count: 4)
     
@@ -21,6 +27,8 @@ class RegisterViewController: BaseViewController<RegisterView> {
     }
     
     override func configureView() {
+        print(repository.fileURL)
+        
         ///Configure Nav
         customView.cancelButtonItem.target = self
         customView.cancelButtonItem.action = #selector(cancelButtonPressed)
@@ -42,13 +50,11 @@ class RegisterViewController: BaseViewController<RegisterView> {
     }
     
     @objc func addButtonPressed() {
-//        let reminder = Reminder(memoTitle: textArr[0], memoDescription: textArr[1], date: list[0], hashtag: list[1], priority: list[2])
-//        try! realm.write {
-//            realm.add(reminder)
-//            transferData?()
-//            self.dismiss(animated: true)
-//        }
-    }    
+        let reminder = Reminder(title: model.textArr.title, memo: model.textArr.memo, dueDate: model.date, hashTag: model.hashTag, priority: model.priority)
+        repository.addObject(object: reminder)
+        delegate?.objectAdded()
+        self.dismiss(animated: true)
+    }
 }
 
 //MARK: - UITextFieldDelegate

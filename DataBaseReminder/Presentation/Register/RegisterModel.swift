@@ -25,9 +25,10 @@ class RegisterModel {
     
     var date: Date? {
         didSet {
+            guard let date else { return }
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy. MM. dd"
-            delegate?.updateStringResult(formatter.string(from: date ?? Date()), index: 0)
+            delegate?.updateStringResult(formatter.string(from: date), index: 0)
         }
     }
     

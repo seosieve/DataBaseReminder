@@ -9,7 +9,7 @@ import UIKit
 
 class DateViewController: BaseViewController<DateView>, SubViewType {
     
-    private var date: Date?
+    private var date = Date.removeTime()
     weak var delegate: DataTransportDelegate?
     
     override func configureView() {
@@ -23,6 +23,6 @@ class DateViewController: BaseViewController<DateView>, SubViewType {
     }
     
     @objc private func dateChanged(_ picker: UIDatePicker) {
-        self.date = picker.date
+        self.date = Date.removeTime(date: picker.date)
     }
 }
