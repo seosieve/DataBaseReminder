@@ -10,18 +10,22 @@ import RealmSwift
 
 class Reminder: Object {
     @Persisted(primaryKey: true) var key: ObjectId
-    @Persisted(indexed: true) var memoTitle: String
-    @Persisted var memoDescription: String?
-    @Persisted var date: String?
-    @Persisted var hashtag: String?
-    @Persisted var priority: String?
+    @Persisted(indexed: true) var title: String
+    @Persisted var memo: String
+    @Persisted var dueDate: Date?
+    @Persisted var hashTag: String?
+    @Persisted var priority: Int?
+    @Persisted var flag: Bool
+    @Persisted var complete: Bool
     
-    convenience init(memoTitle: String, memoDescription: String, date: String?, hashtag: String?, priority: String?)  {
+    convenience init(title: String, memo: String, dueDate: Date?, hashTag: String?, priority: Int?)  {
         self.init()
-        self.memoTitle = memoTitle
-        self.memoDescription = memoDescription
-        self.date = date
-        self.hashtag = hashtag
+        self.title = title
+        self.memo = memo
+        self.dueDate = dueDate
+        self.hashTag = hashTag
         self.priority = priority
+        self.flag = false
+        self.complete = false
     }
 }

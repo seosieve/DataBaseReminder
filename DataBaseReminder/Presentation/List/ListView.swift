@@ -50,9 +50,9 @@ class ListView: BaseView {
         }
     }
     
-    func configureNavigationController(_ vc: UIViewController) {
+    override func configureNavigationController(_ vc: UIViewController) {
         vc.navigationItem.title = "오늘"
         vc.navigationItem.rightBarButtonItem = filterButtonItem
-        vc.navigationController?.navigationBar.tintColor = Colors.contentBlue
+        vc.navigationController?.navigationBar.tintColor = Colors.mainBlue
     }
 }

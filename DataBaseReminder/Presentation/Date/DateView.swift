@@ -32,4 +32,8 @@ class DateView: BaseView {
             make.center.horizontalEdges.equalToSuperview()
         }
     }
+    
+    override func configureNavigationController(_ vc: UIViewController) {
+        vc.navigationItem.title = "마감일"
+    }
 }

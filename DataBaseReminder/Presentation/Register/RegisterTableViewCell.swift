@@ -19,7 +19,6 @@ class RegisterTableViewCell: BaseTableViewCell {
     
     let titleLabel = {
         let label = UILabel()
-        label.text = "안녕안녕"
         label.textColor = .white
         label.font = .systemFont(ofSize: 16)
         return label
@@ -27,9 +26,9 @@ class RegisterTableViewCell: BaseTableViewCell {
     
     let valueLabel = {
         let label = UILabel()
-        label.text = "안녕안녕"
         label.textColor = Colors.descriptionBlack
         label.font = .systemFont(ofSize: 16)
+        label.textAlignment = .right
         return label
     }()
     
@@ -65,6 +64,7 @@ class RegisterTableViewCell: BaseTableViewCell {
         }
         
         valueLabel.snp.makeConstraints { make in
+            make.leading.equalTo(titleLabel.snp.trailing).offset(20)
             make.verticalEdges.equalToSuperview().inset(16)
             make.trailing.equalTo(chevronImageView.snp.leading).offset(-14)
         }

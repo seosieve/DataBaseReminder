@@ -28,8 +28,8 @@
 		4E0F67942C356F0100BCE025 /* Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67932C356F0100BCE025 /* Names.swift */; };
 		4E0F67972C35721D00BCE025 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67962C35721D00BCE025 /* DateView.swift */; };
 		4E0F67992C3574BF00BCE025 /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67982C3574BF00BCE025 /* DateViewController.swift */; };
-		4E0F679D2C35781300BCE025 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F679C2C35781300BCE025 /* TagView.swift */; };
-		4E0F679F2C35781E00BCE025 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F679E2C35781E00BCE025 /* TagViewController.swift */; };
+		4E0F679D2C35781300BCE025 /* HashTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F679C2C35781300BCE025 /* HashTagView.swift */; };
+		4E0F679F2C35781E00BCE025 /* HashTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F679E2C35781E00BCE025 /* HashTagViewController.swift */; };
 		4E0F67A12C35783000BCE025 /* PriorityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67A02C35783000BCE025 /* PriorityView.swift */; };
 		4E0F67A32C35783C00BCE025 /* PriorityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67A22C35783C00BCE025 /* PriorityViewController.swift */; };
 		4E0F67A52C357BC500BCE025 /* UIDatePicker + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67A42C357BC500BCE025 /* UIDatePicker + Extension.swift */; };
@@ -42,6 +42,11 @@
 		4E0F67BC2C37E15200BCE025 /* BundleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67BB2C37E15200BCE025 /* BundleCollectionViewCell.swift */; };
 		4E0F67BE2C37E16500BCE025 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67BD2C37E16500BCE025 /* BaseCollectionViewCell.swift */; };
 		4E0F67C02C381AD700BCE025 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67BF2C381AD700BCE025 /* UIViewController + Extension.swift */; };
+		4E0F67C22C391A0900BCE025 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67C12C391A0900BCE025 /* RegisterModel.swift */; };
+		4E0F67C42C391CBB00BCE025 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67C32C391CBB00BCE025 /* UIView + Extension.swift */; };
+		4E0F67C62C392DB100BCE025 /* TransportProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67C52C392DB100BCE025 /* TransportProtocol.swift */; };
+		4E0F67CA2C39548E00BCE025 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67C92C39548E00BCE025 /* ImageView.swift */; };
+		4E0F67CC2C39549800BCE025 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67CB2C39549800BCE025 /* ImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -80,8 +85,8 @@
 		4E0F67932C356F0100BCE025 /* Names.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Names.swift; sourceTree = "<group>"; };
 		4E0F67962C35721D00BCE025 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		4E0F67982C3574BF00BCE025 /* DateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
-		4E0F679C2C35781300BCE025 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
-		4E0F679E2C35781E00BCE025 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
+		4E0F679C2C35781300BCE025 /* HashTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTagView.swift; sourceTree = "<group>"; };
+		4E0F679E2C35781E00BCE025 /* HashTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTagViewController.swift; sourceTree = "<group>"; };
 		4E0F67A02C35783000BCE025 /* PriorityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityView.swift; sourceTree = "<group>"; };
 		4E0F67A22C35783C00BCE025 /* PriorityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityViewController.swift; sourceTree = "<group>"; };
 		4E0F67A42C357BC500BCE025 /* UIDatePicker + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDatePicker + Extension.swift"; sourceTree = "<group>"; };
@@ -93,6 +98,11 @@
 		4E0F67BB2C37E15200BCE025 /* BundleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleCollectionViewCell.swift; sourceTree = "<group>"; };
 		4E0F67BD2C37E16500BCE025 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		4E0F67BF2C381AD700BCE025 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
+		4E0F67C12C391A0900BCE025 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
+		4E0F67C32C391CBB00BCE025 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
+		4E0F67C52C392DB100BCE025 /* TransportProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportProtocol.swift; sourceTree = "<group>"; };
+		4E0F67C92C39548E00BCE025 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		4E0F67CB2C39549800BCE025 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +165,7 @@
 		4E0F676F2C3408C100BCE025 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4E0F67C72C39379000BCE025 /* Protocol */,
 				4E0F67882C35418500BCE025 /* NameSpace */,
 				4E0F677B2C340C0500BCE025 /* Extenstion */,
 				4E0F67622C34071C00BCE025 /* Assets.xcassets */,
@@ -172,8 +183,9 @@
 				4E0F67712C3408EF00BCE025 /* List */,
 				4E0F67732C34090600BCE025 /* Register */,
 				4E0F67952C35720300BCE025 /* Date */,
-				4E0F679A2C3577F300BCE025 /* Tag */,
+				4E0F679A2C3577F300BCE025 /* HashTag */,
 				4E0F679B2C3577F600BCE025 /* Priority */,
+				4E0F67C82C39547700BCE025 /* Image */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -182,8 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				4E0F67772C34099D00BCE025 /* ListView.swift */,
-				4E0F675D2C34071A00BCE025 /* ListViewController.swift */,
 				4E0F677E2C340D2B00BCE025 /* ListTableViewCell.swift */,
+				4E0F675D2C34071A00BCE025 /* ListViewController.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -192,8 +204,9 @@
 			isa = PBXGroup;
 			children = (
 				4E0F678D2C3544BC00BCE025 /* RegisterView.swift */,
-				4E0F678B2C3543C900BCE025 /* RegisterViewController.swift */,
 				4E0F67912C354FAA00BCE025 /* RegisterTableViewCell.swift */,
+				4E0F678B2C3543C900BCE025 /* RegisterViewController.swift */,
+				4E0F67C12C391A0900BCE025 /* RegisterModel.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -202,9 +215,9 @@
 			isa = PBXGroup;
 			children = (
 				4E0F67752C34098200BCE025 /* BaseView.swift */,
-				4E0F67792C340A3C00BCE025 /* BaseViewController.swift */,
 				4E0F67802C340D4600BCE025 /* BaseTableViewCell.swift */,
 				4E0F67BD2C37E16500BCE025 /* BaseCollectionViewCell.swift */,
+				4E0F67792C340A3C00BCE025 /* BaseViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -215,6 +228,7 @@
 				4E0F677C2C340C1F00BCE025 /* NSObjectProtocol + Extenstion.swift */,
 				4E0F678F2C35497A00BCE025 /* UINavigationController + Extension.swift */,
 				4E0F67BF2C381AD700BCE025 /* UIViewController + Extension.swift */,
+				4E0F67C32C391CBB00BCE025 /* UIView + Extension.swift */,
 				4E0F67A42C357BC500BCE025 /* UIDatePicker + Extension.swift */,
 			);
 			path = Extenstion;
@@ -238,13 +252,13 @@
 			path = Date;
 			sourceTree = "<group>";
 		};
-		4E0F679A2C3577F300BCE025 /* Tag */ = {
+		4E0F679A2C3577F300BCE025 /* HashTag */ = {
 			isa = PBXGroup;
 			children = (
-				4E0F679C2C35781300BCE025 /* TagView.swift */,
-				4E0F679E2C35781E00BCE025 /* TagViewController.swift */,
+				4E0F679C2C35781300BCE025 /* HashTagView.swift */,
+				4E0F679E2C35781E00BCE025 /* HashTagViewController.swift */,
 			);
-			path = Tag;
+			path = HashTag;
 			sourceTree = "<group>";
 		};
 		4E0F679B2C3577F600BCE025 /* Priority */ = {
@@ -270,10 +284,27 @@
 			isa = PBXGroup;
 			children = (
 				4E0F67B92C37DD9C00BCE025 /* BundleView.swift */,
-				4E0F67B72C37DD9300BCE025 /* BundleViewController.swift */,
 				4E0F67BB2C37E15200BCE025 /* BundleCollectionViewCell.swift */,
+				4E0F67B72C37DD9300BCE025 /* BundleViewController.swift */,
 			);
 			path = Bundle;
+			sourceTree = "<group>";
+		};
+		4E0F67C72C39379000BCE025 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				4E0F67C52C392DB100BCE025 /* TransportProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		4E0F67C82C39547700BCE025 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				4E0F67C92C39548E00BCE025 /* ImageView.swift */,
+				4E0F67CB2C39549800BCE025 /* ImageViewController.swift */,
+			);
+			path = Image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,9 +403,13 @@
 				4E0F67812C340D4600BCE025 /* BaseTableViewCell.swift in Sources */,
 				4E0F675C2C34071A00BCE025 /* SceneDelegate.swift in Sources */,
 				4E0F67C02C381AD700BCE025 /* UIViewController + Extension.swift in Sources */,
+				4E0F67CC2C39549800BCE025 /* ImageViewController.swift in Sources */,
 				4E0F67782C34099D00BCE025 /* ListView.swift in Sources */,
+				4E0F67C62C392DB100BCE025 /* TransportProtocol.swift in Sources */,
 				4E0F67A52C357BC500BCE025 /* UIDatePicker + Extension.swift in Sources */,
-				4E0F679F2C35781E00BCE025 /* TagViewController.swift in Sources */,
+				4E0F67CA2C39548E00BCE025 /* ImageView.swift in Sources */,
+				4E0F679F2C35781E00BCE025 /* HashTagViewController.swift in Sources */,
+				4E0F67C42C391CBB00BCE025 /* UIView + Extension.swift in Sources */,
 				4E0F67922C354FAA00BCE025 /* RegisterTableViewCell.swift in Sources */,
 				4E0F678E2C3544BC00BCE025 /* RegisterView.swift in Sources */,
 				4E0F67BE2C37E16500BCE025 /* BaseCollectionViewCell.swift in Sources */,
@@ -384,7 +419,8 @@
 				4E0F67B52C37D64900BCE025 /* RealmManager.swift in Sources */,
 				4E0F67992C3574BF00BCE025 /* DateViewController.swift in Sources */,
 				4E0F67BA2C37DD9C00BCE025 /* BundleView.swift in Sources */,
-				4E0F679D2C35781300BCE025 /* TagView.swift in Sources */,
+				4E0F679D2C35781300BCE025 /* HashTagView.swift in Sources */,
+				4E0F67C22C391A0900BCE025 /* RegisterModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

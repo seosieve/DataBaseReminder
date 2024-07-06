@@ -10,39 +10,31 @@ import RealmSwift
 
 class RegisterViewController: BaseViewController<RegisterView> {
     
-    let realm = try! Realm()
+    let repository = ReminderRepository()
+    let model: RegisterModel
     
-    var textArr = ["", ""]
+    var stringResultArr = Array(repeating: String(), count: 4)
     
-    var date: Date?
-    
-    var transferData: (() -> Void)?
-    
-    var list = ["", "", "", ""] {
-        didSet { self.customView.registerTableView.reloadData() }
-    }
-    
-    lazy var cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelButtonPressed))
-    
-    lazy var addButton = UIBarButtonItem(title: "추가", style: .plain, target: self, action: #selector(addButtonPressed))
-    
-    override init(view: RegisterView) {
+    init(view: RegisterView, model: RegisterModel) {
+        self.model = model
         super.init(view: view)
     }
     
     override func configureView() {
-        navigationItem.title = "새로운 할 일"
-        
-        addButton.isEnabled = false
-        navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = addButton
-        self.navigationController?.navigationBar.tintColor = Colors.mainBlue
-        
-        customView.titleTextField.addTarget(self, action:  #selector(textFieldChanged(_:)), for: .editingChanged)
-        customView.memoTextField.addTarget(self, action:  #selector(textFieldChanged(_:)), for: .editingChanged)
-        
+        ///Configure Nav
+        customView.cancelButtonItem.target = self
+        customView.cancelButtonItem.action = #selector(cancelButtonPressed)
+        customView.addButtonItem.target = self
+        customView.addButtonItem.action = #selector(addButtonPressed)
+        customView.configureNavigationController(self)
+        ///TextField & TextView
+        customView.titleTextField.delegate = self
+        customView.memoTextView.delegate = self
+        ///TableView Delegate
         customView.registerTableView.delegate = self
         customView.registerTableView.dataSource = self
+        ///Model
+        model.delegate = self
     }
     
     @objc func cancelButtonPressed() {
@@ -50,69 +42,106 @@ class RegisterViewController: BaseViewController<RegisterView> {
     }
     
     @objc func addButtonPressed() {
-        let reminder = Reminder(memoTitle: textArr[0], memoDescription: textArr[1], date: list[0], hashtag: list[1], priority: list[2])
-        try! realm.write {
-            realm.add(reminder)
-            transferData?()
-            self.dismiss(animated: true)
+//        let reminder = Reminder(memoTitle: textArr[0], memoDescription: textArr[1], date: list[0], hashtag: list[1], priority: list[2])
+//        try! realm.write {
+//            realm.add(reminder)
+//            transferData?()
+//            self.dismiss(animated: true)
+//        }
+    }    
+}
+
+//MARK: - UITextFieldDelegate
+extension RegisterViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let currentText = textField.text, let range = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: range, with: string)
+        model.textArr.title = updatedText
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        customView.memoTextView.becomeFirstResponder()
+        return true
+    }
+}
+
+//MARK: - UITextViewDelegate
+extension RegisterViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == Colors.descriptionBlack {
+            textView.text = nil
+            textView.textColor = .white
         }
     }
     
-    @objc private func textFieldChanged(_ textField: UITextField) {
-        guard let text = textField.text else { return }
-        
-        textArr[textField.tag] = text
-        
-        if textArr.contains("") {
-            addButton.isEnabled = false
-        } else {
-            addButton.isEnabled = true
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "메모"
+            textView.textColor = Colors.descriptionBlack
         }
-        
-        print(textArr)
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        guard text != "\n" else { textView.resignFirstResponder(); return false }
+        guard let currentText = textView.text, let range = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: range, with: text)
+        model.textArr.memo = updatedText
+        return true
     }
 }
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
 extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return stringResultArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RegisterTableViewCell.identifier, for: indexPath) as? RegisterTableViewCell
         guard let cell else { return UITableViewCell() }
-        
         let title = Names.registerNames.allCases[indexPath.row].rawValue
         cell.titleLabel.text = title
-        cell.valueLabel.text = list[indexPath.row]
+        cell.valueLabel.text = stringResultArr[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let register = Names.registerNames.allCases[indexPath.row]
-        
-        switch register {
-        case .date:
-            let vc = DateViewController(view: DateView())
-            vc.transferData = { date in
-                self.list[0] = date
-            }
-            self.navigationController?.pushViewController(vc, animated: true)
-        case .tag:
-            let vc = TagViewController(view: TagView())
-            vc.transferData = { tag in
-                self.list[1] = tag
-            }
-            self.navigationController?.pushViewController(vc, animated: true)
-        case .priority:
-            let vc = PriorityViewController(view: PriorityView())
-            vc.transferData = { priority in
-                self.list[2] = priority
-            }
-            self.navigationController?.pushViewController(vc, animated: true)
-        case .image:
-            break
-        }
+        let vc = register.viewController
+        guard let subViewController = vc as? SubViewType else { return }
+        subViewController.delegate = self
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+//MARK: - TextArrayDelegate
+extension RegisterViewController: ReminderRegisterDelegate {
+    func updateAddButton(_ state: Bool) {
+        customView.addButtonItem.isEnabled = state
+    }
+    
+    func updateStringResult(_ stringResult: String, index: Int) {
+        stringResultArr[index] = stringResult
+        customView.registerTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+    }
+}
+
+//MARK: - DataTransportDelegate
+extension RegisterViewController: DataTransportDelegate {
+    func transportDate(date: Date?) {
+        model.date = date
+    }
+    
+    func transportHashTag(hashTag: String?) {
+        model.hashTag = hashTag
+    }
+    
+    func transportPriority(priority: Int?) {
+        model.priority = priority
+    }
+    
+    func transportImage(image: UIImage?) {
+        model.image = image
     }
 }

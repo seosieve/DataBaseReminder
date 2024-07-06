@@ -1,5 +1,5 @@
 //
-//  TagView.swift
+//  HashTagView.swift
 //  DataBaseReminder
 //
 //  Created by 서충원 on 7/3/24.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class TagView: BaseView {
+class HashTagView: BaseView {
     
     let tagTextField = {
         let textField = UITextField()
@@ -32,5 +32,9 @@ class TagView: BaseView {
             make.horizontalEdges.equalToSuperview().inset(20)
             make.height.equalTo(40)
         }
+    }
+    
+    override func configureNavigationController(_ vc: UIViewController) {
+        vc.navigationItem.title = "태그"
     }
 }

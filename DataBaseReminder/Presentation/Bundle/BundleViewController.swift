@@ -9,10 +9,6 @@ import UIKit
 
 final class BundleViewController: BaseViewController<BundleView> {
     
-    override init(view: BundleView) {
-        super.init(view: view)
-    }
-    
     override func configureView() {
         ///Configure Nav
         customView.filterButtonItem.target = self
@@ -30,7 +26,7 @@ final class BundleViewController: BaseViewController<BundleView> {
     }
     
     @objc func addButtonPressed() {
-        let vc = RegisterViewController(view: RegisterView())
+        let vc = RegisterViewController(view: RegisterView(), model: RegisterModel())
         let nav = UINavigationController(rootViewController: vc)
         nav.setNavigationAppearance(backgroundColor: Colors.subBlack)
         self.present(nav, animated: true)
@@ -46,6 +42,12 @@ extension BundleViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BundleCollectionViewCell.identifier, for: indexPath) as? BundleCollectionViewCell
         guard let cell else { return UICollectionViewCell() }
+
+        let bundle = Names.BundleNames.allCases[indexPath.row]
+        cell.iconContainerView.backgroundColor = bundle.color
+        cell.iconImageView.image = bundle.image
+        cell.titleLabel.text = bundle.title
+        
         return cell
     }
     

@@ -13,10 +13,6 @@ final class ListViewController: BaseViewController<ListView> {
     
     lazy var list = repository.allObjects
     
-    override init(view: ListView) {
-        super.init(view: view)
-    }
-    
     override func configureView() {
         ///Configure Nav
         customView.filterButtonItem.target = self
@@ -48,9 +44,9 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource, ListTa
         let data = list[indexPath.row]
         
         cell.delegate = self
-        cell.titleLabel.text = data.memoTitle
-        cell.descriptionLabel.text = data.memoDescription
-        cell.hashTagLabel.text = data.hashtag
+        cell.titleLabel.text = data.title
+        cell.descriptionLabel.text = data.memo
+        
         return cell
     }
     

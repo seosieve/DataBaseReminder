@@ -26,4 +26,6 @@ class BaseView: UIView {
     func configureSubViews() { }
     
     func configureConstraints() { }
+    
+    func configureNavigationController(_ vc: UIViewController) { }
 }

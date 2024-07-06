@@ -33,7 +33,7 @@ class BundleView: BaseView {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         let screenWidth = UIScreen.main.bounds.width
         let spacing = layout.minimumLineSpacing + layout.sectionInset.left + layout.sectionInset.left
-        layout.itemSize = CGSize(width: (screenWidth - spacing) / 2, height: 95)
+        layout.itemSize = CGSize(width: (screenWidth - spacing) / 2, height: 90)
         return layout
     }()
     
@@ -83,7 +83,7 @@ class BundleView: BaseView {
         }
     }
     
-    func configureNavigationController(_ vc: UIViewController) {
+    override func configureNavigationController(_ vc: UIViewController) {
         vc.navigationItem.title = "전체"
         vc.navigationController?.navigationBar.prefersLargeTitles = true
         vc.navigationItem.rightBarButtonItems = [filterButtonItem, calendarButtonItem]

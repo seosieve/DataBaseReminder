@@ -7,32 +7,22 @@
 
 import UIKit
 
-class DateViewController: BaseViewController<DateView> {
+class DateViewController: BaseViewController<DateView>, SubViewType {
     
-    private var date = String()
-    
-    var transferData: ((String) -> Void)?
-    
-    override init(view: DateView) {
-        super.init(view: view)
-    }
+    private var date: Date?
+    weak var delegate: DataTransportDelegate?
     
     override func configureView() {
-        navigationItem.title = "마감일"
-        customView.datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+        customView.configureNavigationController(self)
+        customView.datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        transferData?(date)
+        delegate?.transportDate(date: date)
     }
     
     @objc private func dateChanged(_ picker: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        
-        let dateString = dateFormatter.string(from: picker.date)
-        date = dateString
+        self.date = picker.date
     }
 }
