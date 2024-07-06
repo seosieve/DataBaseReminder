@@ -27,7 +27,7 @@ class RegisterViewController: BaseViewController<RegisterView> {
     }
     
     override func configureView() {
-        print(repository.fileURL)
+//        print(repository.fileURL)
         
         ///Configure Nav
         customView.cancelButtonItem.target = self

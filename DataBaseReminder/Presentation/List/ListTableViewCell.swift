@@ -136,5 +136,25 @@ class ListTableViewCell: BaseTableViewCell {
         
         titleLabel.text = reminder.title
         descriptionLabel.text = reminder.memo
+        
+        if let dueDate = reminder.dueDate {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy. MM. dd"
+            dueDateLabel.text = formatter.string(from: dueDate)
+            hashTagLabel.snp.updateConstraints { make in
+                make.leading.equalTo(dueDateLabel.snp.trailing).offset(8)
+            }
+        } else {
+            dueDateLabel.text = String()
+            hashTagLabel.snp.updateConstraints { make in
+                make.leading.equalTo(dueDateLabel.snp.trailing)
+            }
+        }
+        
+        if let hashTag = reminder.hashTag {
+            hashTagLabel.text = "#" + hashTag
+        } else {
+            hashTagLabel.text = String()
+        }
     }
 }

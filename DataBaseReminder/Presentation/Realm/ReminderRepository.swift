@@ -53,4 +53,12 @@ final class ReminderRepository {
             print("Error Delete Realm Object: \(error.localizedDescription)")
         }
     }
+    
+    func updateObject(object: Reminder) {
+        let flag = object.flag
+        try! realm.write {
+            var state = !flag
+            realm.create(Reminder.self, value: ["key": object.key, "flag": state], update: .modified)
+        }
+    }
 }

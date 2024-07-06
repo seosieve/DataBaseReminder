@@ -24,11 +24,7 @@ final class ListViewController: BaseViewController<ListView> {
     }
     
     @objc func filterButtonPressed() {
-        self.navigationController?.viewControllers.forEach { vc in
-            if let aa = vc as? BaseViewController {
-                
-            }
-        }
+        
     }
 }
 
@@ -50,27 +46,35 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource, ListTa
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let remove = UIContextualAction(style: .normal, title: nil) { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+        let flagImage = UIImage(systemName: "flag.fill", withConfiguration: UIImage.SymbolConfiguration(weight: .medium))
+        let unflagImage = UIImage(systemName: "flag", withConfiguration: UIImage.SymbolConfiguration(weight: .medium))
+        
+        let delete = UIContextualAction(style: .normal, title: nil) { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
             self.deleteAction(indexPath: indexPath)
             success(true)
         }
        
         let flag = UIContextualAction(style: .normal, title: nil) { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
-            self.deleteAction(indexPath: indexPath)
+            self.flagAction(indexPath: indexPath)
             success(true)
         }
         
-        remove.backgroundColor = Colors.trashPink
+        delete.backgroundColor = Colors.trashPink
         flag.backgroundColor = Colors.flagOrange
-        remove.image = UIImage(systemName: "trash", withConfiguration: UIImage.SymbolConfiguration(weight: .medium))
-        flag.image = UIImage(systemName: "flag", withConfiguration: UIImage.SymbolConfiguration(weight: .medium))
         
-        return UISwipeActionsConfiguration(actions: [remove, flag])
+        delete.image = UIImage(systemName: "trash", withConfiguration: UIImage.SymbolConfiguration(weight: .medium))
+        flag.image = list[indexPath.row].flag ? flagImage : unflagImage
+        
+        return UISwipeActionsConfiguration(actions: [delete, flag])
     }
     
     func deleteAction(indexPath: IndexPath) {
         repository.deleteObject(object: list[indexPath.row])
         customView.listTableView.deleteRows(at: [indexPath], with: .fade)
+    }
+    
+    func flagAction(indexPath: IndexPath) {
+        repository.updateObject(object: list[indexPath.row])
     }
     
     func radioButtonTapped(in cell: ListTableViewCell) {
