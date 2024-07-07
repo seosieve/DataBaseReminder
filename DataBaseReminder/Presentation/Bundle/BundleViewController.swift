@@ -13,26 +13,33 @@ final class BundleViewController: BaseViewController<BundleView> {
     
     override func configureView() {
         ///Configure Nav
-        customView.filterButtonItem.target = self
-        customView.filterButtonItem.action = #selector(filterButtonPressed)
+        customView.calendarButtonItem.target = self
+        customView.calendarButtonItem.action = #selector(calendarButtonClicked)
         customView.configureNavigationController(self)
         ///TableView Delegate
         customView.bundleCollectionView.delegate = self
         customView.bundleCollectionView.dataSource = self
         ///AddButton
         customView.addButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
+        ///NotificationCenter
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadBundle), name: Names.reloadBundle, object: nil)
     }
     
-    @objc func filterButtonPressed() {
-        
+    @objc func calendarButtonClicked() {
+        let vc = CalendarViewController(view: CalendarView())
+        vc.navigationItem.title = "달력"
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func addButtonPressed() {
         let vc = RegisterViewController(view: RegisterView(), model: RegisterModel())
-        vc.delegate = self
         let nav = UINavigationController(rootViewController: vc)
         nav.setNavigationAppearance(backgroundColor: Colors.subBlack)
         self.present(nav, animated: true)
+    }
+    
+    @objc func reloadBundle() {
+        customView.bundleCollectionView.reloadData()
     }
 }
 
@@ -57,13 +64,7 @@ extension BundleViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let bundle = Names.BundleNames.allCases[indexPath.row]
         let vc = ListViewController(view: ListView())
         vc.navigationItem.title = bundle.title
+        vc.list = repository.filterObject(bundle: bundle)
         self.navigationController?.pushViewController(vc, animated: true)
-    }
-}
-
-//MARK: - ObjectAddDelegate
-extension BundleViewController: ObjectAddDelegate {
-    func objectAdded() {
-        customView.bundleCollectionView.reloadData()
     }
 }

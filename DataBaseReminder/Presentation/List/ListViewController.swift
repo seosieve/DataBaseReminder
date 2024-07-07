@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 final class ListViewController: BaseViewController<ListView> {
     
     let repository = ReminderRepository()
     
-    lazy var list = repository.allObjects
+    var list: Results<Reminder>!
     
     override func configureView() {
         ///Configure Nav
@@ -21,6 +22,11 @@ final class ListViewController: BaseViewController<ListView> {
         ///TableView Delegate
         customView.listTableView.delegate = self
         customView.listTableView.dataSource = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.post(name: Names.reloadBundle, object: nil)
     }
     
     @objc func filterButtonPressed() {
@@ -74,12 +80,22 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource, ListTa
     }
     
     func flagAction(indexPath: IndexPath) {
-        repository.updateObject(object: list[indexPath.row])
+        repository.updateObject(object: list[indexPath.row], key: "flag")
+        ///Delete Animation When Flag List
+        if let title = self.navigationItem.title, title == Names.BundleNames.flag.title {
+            UIView.animate(withDuration: 0.3, delay: 0.5) {
+                self.customView.listTableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        }
     }
     
     func radioButtonTapped(in cell: ListTableViewCell) {
         guard let indexPath = customView.listTableView.indexPath(for: cell) else { return }
-        print(indexPath)
+        repository.updateObject(object: list[indexPath.row], key: "complete")
+        ///Delete Animation When Complete List
+        if let title = self.navigationItem.title, title == Names.BundleNames.complete.title {
+            customView.listTableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
 }
 

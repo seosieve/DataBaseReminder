@@ -9,6 +9,9 @@ import UIKit
 import RealmSwift
 
 enum Names {
+    //NotificationCenter
+    static let reloadBundle = Notification.Name(rawValue: "reloadBundle")
+    
     enum registerNames: String, CaseIterable {
         case date = "마감일"
         case tag = "태그"

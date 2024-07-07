@@ -8,16 +8,10 @@
 import UIKit
 import RealmSwift
 
-protocol ObjectAddDelegate: AnyObject {
-    func objectAdded()
-}
-
 class RegisterViewController: BaseViewController<RegisterView> {
     
     let repository = ReminderRepository()
     let model: RegisterModel
-    
-    weak var delegate: ObjectAddDelegate?
     
     var stringResultArr = Array(repeating: String(), count: 4)
     
@@ -52,7 +46,7 @@ class RegisterViewController: BaseViewController<RegisterView> {
     @objc func addButtonPressed() {
         let reminder = Reminder(title: model.textArr.title, memo: model.textArr.memo, dueDate: model.date, hashTag: model.hashTag, priority: model.priority)
         repository.addObject(object: reminder)
-        delegate?.objectAdded()
+        NotificationCenter.default.post(name: Names.reloadBundle, object: nil)
         self.dismiss(animated: true)
     }
 }

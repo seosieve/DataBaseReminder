@@ -14,4 +14,21 @@ extension Date {
         let components = calendar.dateComponents([.year, .month, .day], from: date)
         return calendar.date(from: components)!
     }
+    //Return Current Page Of FSCalendat
+    static func currentCalendar(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        dateFormatter.dateFormat = "yyyy년 M월"
+        let date = dateFormatter.string(from: date)
+        return date
+    }
+    //Return Month And Day
+    static func selectedDay(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        dateFormatter.dateFormat = "M월 d일"
+        let date = dateFormatter.string(from: date)
+        return date
+    }
 }
+

@@ -32,6 +32,10 @@ final class ReminderRepository {
         }
     }
     
+    func filterObject(date: Date) -> Results<Reminder> {
+        return realm.objects(Reminder.self).where{ $0.dueDate != nil && $0.dueDate == Date.removeTime(date: date) }
+    }
+    
     func addObject(object: Reminder) {
         do {
             try realm.write {
@@ -54,11 +58,15 @@ final class ReminderRepository {
         }
     }
     
-    func updateObject(object: Reminder) {
-        let flag = object.flag
-        try! realm.write {
-            var state = !flag
-            realm.create(Reminder.self, value: ["key": object.key, "flag": state], update: .modified)
+    func updateObject(object: Reminder, key: String) {
+        do {
+            try realm.write {
+                guard let currentValue = object.value(forKey: key) as? Bool else { fatalError("Invalid key or value type") }
+                let newValue = !currentValue
+                realm.create(Reminder.self, value: ["key": object.key, key: newValue], update: .modified)
+            }
+        } catch {
+            print("Error Update Realm Object: \(error.localizedDescription)")
         }
     }
 }

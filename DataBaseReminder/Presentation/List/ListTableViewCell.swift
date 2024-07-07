@@ -122,6 +122,9 @@ class ListTableViewCell: BaseTableViewCell {
     }
     
     func configureCell(reminder: Reminder) {
+        radioButton.tintColor = reminder.complete ? Colors.contentBlue : Colors.descriptionBlack
+        radioButton.isSelected = reminder.complete
+        
         if let priority = reminder.priority {
             priorityLabel.text = String(repeating: "★", count: priority + 1)
             titleLabel.snp.updateConstraints { make in

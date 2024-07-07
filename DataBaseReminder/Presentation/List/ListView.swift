@@ -13,7 +13,7 @@ class ListView: BaseView {
     let filterButtonItem = {
         let button = UIBarButtonItem()
         button.image = UIImage(systemName: "ellipsis.circle")
-        button.tintColor = Colors.contentBlue
+        button.tintColor = Colors.mainBlue
         button.style = .plain
         return button
     }()
@@ -21,7 +21,7 @@ class ListView: BaseView {
     let addButtonItem = {
         let button = UIBarButtonItem()
         button.image = UIImage(systemName: "plus.circle")
-        button.tintColor = Colors.contentBlue
+        button.tintColor = Colors.mainBlue
         button.style = .plain
         return button
     }()

@@ -18,14 +18,6 @@ class BundleView: BaseView {
         return button
     }()
     
-    let filterButtonItem = {
-        let button = UIBarButtonItem()
-        button.image = UIImage(systemName: "ellipsis.circle")
-        button.tintColor = Colors.mainBlue
-        button.style = .plain
-        return button
-    }()
-    
     let layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 16
@@ -86,7 +78,7 @@ class BundleView: BaseView {
     override func configureNavigationController(_ vc: UIViewController) {
         vc.navigationItem.title = "전체"
         vc.navigationController?.navigationBar.prefersLargeTitles = true
-        vc.navigationItem.rightBarButtonItems = [filterButtonItem, calendarButtonItem]
+        vc.navigationItem.rightBarButtonItem = calendarButtonItem
     }
 }
 
