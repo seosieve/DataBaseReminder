@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol ListSortDelegate: AnyObject {
-    func sortList(action: UIAction)
+    func sortList(sortName: Names.SortNames)
 }
 
 class ListView: BaseView {
@@ -27,10 +27,14 @@ class ListView: BaseView {
     private lazy var priorityOrder = UIAction(title: sortArr[2].title, state: .off, handler: updateActionStates)
     
     private lazy var updateActionStates: (UIAction) -> Void = { action in
+        guard let index = self.sortArr.firstIndex(where: { $0.title == action.title }) else { return }
+        
         let actions = self.actions
         actions.forEach { $0.state = ($0 == action) ? .on : .off }
         self.filterButtonItem.menu = UIMenu(options: .displayInline, children: actions)
-        self.delegate?.sortList(action: action)
+        
+        let sortName = self.sortArr[index]
+        self.delegate?.sortList(sortName: sortName)
     }
     
     lazy var filterButtonItem = {

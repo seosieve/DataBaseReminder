@@ -54,6 +54,8 @@
 		4E0F67E52C3D1D4C00BCE025 /* ListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67E42C3D1D4C00BCE025 /* ListDetailView.swift */; };
 		4E0F67E72C3D1D9400BCE025 /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67E62C3D1D9400BCE025 /* ListDetailViewController.swift */; };
 		4E0F67E92C3D285900BCE025 /* FileManagerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67E82C3D285900BCE025 /* FileManagerRepository.swift */; };
+		4E0F67EB2C3D3A6200BCE025 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67EA2C3D3A6200BCE025 /* Observable.swift */; };
+		4E0F67ED2C3D3B4E00BCE025 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67EC2C3D3B4E00BCE025 /* ListModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -116,6 +118,8 @@
 		4E0F67E42C3D1D4C00BCE025 /* ListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailView.swift; sourceTree = "<group>"; };
 		4E0F67E62C3D1D9400BCE025 /* ListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
 		4E0F67E82C3D285900BCE025 /* FileManagerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerRepository.swift; sourceTree = "<group>"; };
+		4E0F67EA2C3D3A6200BCE025 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		4E0F67EC2C3D3B4E00BCE025 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,7 +195,7 @@
 		4E0F67702C3408D700BCE025 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				4E0F67A62C3587AA00BCE025 /* Realm */,
+				4E0F67A62C3587AA00BCE025 /* Model */,
 				4E0F67742C34097A00BCE025 /* Base */,
 				4E0F67B62C37DD6500BCE025 /* Bundle */,
 				4E0F67CF2C3A7E6800BCE025 /* Calendar */,
@@ -212,6 +216,7 @@
 				4E0F67772C34099D00BCE025 /* ListView.swift */,
 				4E0F677E2C340D2B00BCE025 /* ListTableViewCell.swift */,
 				4E0F675D2C34071A00BCE025 /* ListViewController.swift */,
+				4E0F67EC2C3D3B4E00BCE025 /* ListModel.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -287,15 +292,16 @@
 			path = Priority;
 			sourceTree = "<group>";
 		};
-		4E0F67A62C3587AA00BCE025 /* Realm */ = {
+		4E0F67A62C3587AA00BCE025 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				4E0F67A72C3587D000BCE025 /* Reminder.swift */,
 				4E0F67B42C37D64900BCE025 /* RealmManager.swift */,
 				4E0F67B22C369BC100BCE025 /* ReminderRepository.swift */,
 				4E0F67E82C3D285900BCE025 /* FileManagerRepository.swift */,
+				4E0F67EA2C3D3A6200BCE025 /* Observable.swift */,
 			);
-			path = Realm;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		4E0F67B62C37DD6500BCE025 /* Bundle */ = {
@@ -434,6 +440,7 @@
 				4E0F678C2C3543C900BCE025 /* RegisterViewController.swift in Sources */,
 				4E0F67B82C37DD9300BCE025 /* BundleViewController.swift in Sources */,
 				4E0F67D12C3A7E8300BCE025 /* CalendarView.swift in Sources */,
+				4E0F67EB2C3D3A6200BCE025 /* Observable.swift in Sources */,
 				4E0F67D62C3A7FBF00BCE025 /* CalendarViewController.swift in Sources */,
 				4E0F678A2C35419100BCE025 /* Colors.swift in Sources */,
 				4E0F67BC2C37E15200BCE025 /* BundleCollectionViewCell.swift in Sources */,
@@ -445,6 +452,7 @@
 				4E0F67812C340D4600BCE025 /* BaseTableViewCell.swift in Sources */,
 				4E0F675C2C34071A00BCE025 /* SceneDelegate.swift in Sources */,
 				4E0F67C02C381AD700BCE025 /* UIViewController + Extension.swift in Sources */,
+				4E0F67ED2C3D3B4E00BCE025 /* ListModel.swift in Sources */,
 				4E0F67CC2C39549800BCE025 /* ImageViewController.swift in Sources */,
 				4E0F67782C34099D00BCE025 /* ListView.swift in Sources */,
 				4E0F67C62C392DB100BCE025 /* TransportProtocol.swift in Sources */,

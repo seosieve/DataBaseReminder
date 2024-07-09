@@ -62,9 +62,9 @@ extension BundleViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let bundle = Names.BundleNames.allCases[indexPath.row]
-        let vc = ListViewController(view: ListView())
+        let model = ListModel(list: repository.filterObject(bundle: bundle))
+        let vc = ListViewController(view: ListView(), model: model)
         vc.navigationItem.title = bundle.title
-        vc.list = repository.filterObject(bundle: bundle)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

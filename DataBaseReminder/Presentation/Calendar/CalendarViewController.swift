@@ -24,9 +24,9 @@ final class CalendarViewController: BaseViewController<CalendarView> {
 //MARK: - FSCalendarDelegate, FSCalendarDataSource
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let vc = ListViewController(view: ListView())
+        let model = ListModel(list: repository.filterObject(date: date))
+        let vc = ListViewController(view: ListView(), model: model)
         vc.navigationItem.title = Date.selectedDay(date: date)
-        vc.list = repository.filterObject(date: date)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

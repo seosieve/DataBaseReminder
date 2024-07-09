@@ -6,13 +6,15 @@
 //
 
 import UIKit
-import RealmSwift
 
 final class ListViewController: BaseViewController<ListView> {
     
-    let repository = ReminderRepository()
+    let model: ListModel
     
-    var list: Results<Reminder>!
+    init(view: ListView, model: ListModel) {
+        self.model = model
+        super.init(view: view)
+    }
     
     override func configureView() {
         ///Configure Nav
@@ -33,14 +35,14 @@ final class ListViewController: BaseViewController<ListView> {
 //MARK: - UITableViewDelegate, UITableViewDataSource
 extension ListViewController: UITableViewDelegate, UITableViewDataSource, ListTableViewButtonDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.count
+        return model.list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier, for: indexPath) as? ListTableViewCell
         guard let cell else { return UITableViewCell() }
         
-        let reminder = list[indexPath.row]
+        let reminder = model.list[indexPath.row]
         cell.configureCell(reminder: reminder)
         cell.delegate = self
         return cell
@@ -48,7 +50,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource, ListTa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ListDetailViewController(view: ListDetailView())
-        vc.reminder = list[indexPath.row]
+        vc.reminder = model.list[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -70,19 +72,18 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource, ListTa
         flag.backgroundColor = Colors.flagOrange
         
         delete.image = UIImage(systemName: "trash", withConfiguration: UIImage.SymbolConfiguration(weight: .medium))
-        flag.image = list[indexPath.row].flag ? flagImage : unflagImage
+        flag.image = model.list[indexPath.row].flag ? flagImage : unflagImage
         
         return UISwipeActionsConfiguration(actions: [delete, flag])
     }
     
     func deleteAction(indexPath: IndexPath) {
-        FileManagerRepository.removeImage(list[indexPath.row].key)
-        repository.deleteObject(object: list[indexPath.row])
+        model.inputDeleteAction.value = indexPath
         customView.listTableView.deleteRows(at: [indexPath], with: .fade)
     }
     
     func flagAction(indexPath: IndexPath) {
-        repository.updateObject(object: list[indexPath.row], key: "flag")
+        model.inputFlagAction.value = indexPath
         ///Delete Animation When Flag List
         if let title = self.navigationItem.title, title == Names.BundleNames.flag.title {
             UIView.animate(withDuration: 0.3, delay: 0.5) {
@@ -93,7 +94,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource, ListTa
     
     func radioButtonTapped(in cell: ListTableViewCell) {
         guard let indexPath = customView.listTableView.indexPath(for: cell) else { return }
-        repository.updateObject(object: list[indexPath.row], key: "complete")
+        model.inputRadioAction.value = indexPath
         ///Delete Animation When Complete List
         if let title = self.navigationItem.title, title == Names.BundleNames.complete.title {
             customView.listTableView.deleteRows(at: [indexPath], with: .fade)
@@ -103,17 +104,8 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource, ListTa
 
 //MARK: - ListSortDelegate
 extension ListViewController: ListSortDelegate {
-    func sortList(action: UIAction) {
-        switch action.title {
-        case "제목순":
-            list = list.sorted(byKeyPath: "title")
-        case "우선순위순":
-            list = list.sorted(byKeyPath: "priority", ascending: false)
-        case "최신순":
-            list = list.sorted(byKeyPath: "dueDate")
-        default:
-            break
-        }
+    func sortList(sortName: Names.SortNames) {
+        model.inputSortAction.value = sortName
         customView.listTableView.reloadData()
     }
 }

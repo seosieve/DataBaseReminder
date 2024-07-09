@@ -21,7 +21,7 @@ class RegisterViewController: BaseViewController<RegisterView> {
     }
     
     override func configureView() {
-        print(repository.fileURL)
+//        print(repository.fileURL)
         
         ///Configure Nav
         customView.cancelButtonItem.target = self
@@ -37,6 +37,8 @@ class RegisterViewController: BaseViewController<RegisterView> {
         customView.registerTableView.dataSource = self
         ///Model
         model.delegate = self
+        ///
+        bindData()
     }
     
     @objc func cancelButtonPressed() {
@@ -44,14 +46,20 @@ class RegisterViewController: BaseViewController<RegisterView> {
     }
     
     @objc func addButtonPressed() {
-        let reminder = Reminder(title: model.textArr.title, memo: model.textArr.memo, dueDate: model.date, hashTag: model.hashTag, priority: model.priority)
-        repository.addObject(object: reminder)
-        if let image = model.image {
-            FileManagerRepository.addImage(image, reminder.key)
-        }
-        
+//        let reminder = Reminder(title: model.textArr.title, memo: model.textArr.memo, dueDate: model.date, hashTag: model.hashTag, priority: model.priority)
+//        repository.addObject(object: reminder)
+//        if let image = model.image {
+//            FileManagerRepository.addImage(image, reminder.key)
+//        }
+//        
         NotificationCenter.default.post(name: Names.reloadBundle, object: nil)
         self.dismiss(animated: true)
+    }
+    
+    func bindData() {
+        model.outputValid.bind { state in
+            self.customView.addButtonItem.isEnabled = state
+        }
     }
 }
 
@@ -60,7 +68,7 @@ extension RegisterViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let currentText = textField.text, let range = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: range, with: string)
-        model.textArr.title = updatedText
+        model.inputTitleAction.value = updatedText
         return true
     }
     
@@ -90,7 +98,7 @@ extension RegisterViewController: UITextViewDelegate {
         guard text != "\n" else { textView.resignFirstResponder(); return false }
         guard let currentText = textView.text, let range = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: range, with: text)
-        model.textArr.memo = updatedText
+        model.inputMenoAction.value = updatedText
         return true
     }
 }
@@ -121,10 +129,6 @@ extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
 
 //MARK: - TextArrayDelegate
 extension RegisterViewController: ReminderRegisterDelegate {
-    func updateAddButton(_ state: Bool) {
-        customView.addButtonItem.isEnabled = state
-    }
-    
     func updateStringResult(_ stringResult: String, index: Int) {
         stringResultArr[index] = stringResult
         customView.registerTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
