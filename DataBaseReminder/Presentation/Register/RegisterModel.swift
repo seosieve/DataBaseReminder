@@ -7,17 +7,21 @@
 
 import UIKit
 
-protocol ReminderRegisterDelegate: AnyObject {
-    func updateStringResult(_ stringResult: String, index: Int)
-}
-
 class RegisterModel {
     
-    weak var delegate: ReminderRegisterDelegate?
+    let repository = ReminderRepository()
     
     let inputTitleAction: Observable<String> = Observable("")
     let inputMenoAction: Observable<String> = Observable("")
+    let inputAddAction: Observable<Void?> = Observable(nil)
+    
+    let inputDateAction: Observable<Date?> = Observable(nil)
+    let inputHashTagAction: Observable<String?> = Observable(nil)
+    let inputPriorityAction: Observable<Int?> = Observable(nil)
+    let inputImageAction: Observable<UIImage?> = Observable(nil)
+    
     let outputValid: Observable<Bool> = Observable(false)
+    let outputOptionals: Observable<[String?]> = Observable([nil, nil, nil, nil])
     
     init() {
         inputTitleAction.bind { _ in
@@ -27,38 +31,68 @@ class RegisterModel {
         inputMenoAction.bind { _ in
             self.updateAddButton()
         }
+        
+        inputAddAction.bind { value in
+            guard let value else { return }
+            self.addReminderData()
+        }
+        
+        inputDateAction.bind { value in
+            guard let value else { return }
+            self.updateDateResult(date: value)
+        }
+        
+        inputHashTagAction.bind { value in
+            guard let value else { return }
+            self.updateHashTagResult(hashTag: value)
+        }
+        
+        inputPriorityAction.bind { value in
+            guard let value else { return }
+            self.updatePriorityResult(priority: value)
+        }
+        
+        inputImageAction.bind { value in
+            guard let value else { return }
+            self.updateImageResult(image: value)
+        }
     }
     
     private func updateAddButton() {
-        let (title, memo) = (inputTitleAction.value, inputMenoAction.value)        
+        let (title, memo) = (inputTitleAction.value, inputMenoAction.value)
         outputValid.value = !title.isEmpty && !memo.isEmpty
     }
     
-    var date: Date? {
-        didSet {
-            guard let date else { return }
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy. MM. dd"
-            delegate?.updateStringResult(formatter.string(from: date), index: 0)
-        }
+    private func addReminderData() {
+        let title = inputTitleAction.value
+        let memo = inputMenoAction.value
+        let dueDate = inputDateAction.value
+        let hashTag = inputHashTagAction.value
+        let priority = inputPriorityAction.value
+        
+        let reminder = Reminder(title: title, memo: memo, dueDate: dueDate, hashTag: hashTag, priority: priority)
+        repository.addObject(object: reminder)
+        
+        guard let image = inputImageAction.value else { return }
+        FileManagerRepository.addImage(image, reminder.key)
     }
     
-    var hashTag: String? {
-        didSet {
-            delegate?.updateStringResult(hashTag ?? String(), index: 1)
-        }
+    private func updateDateResult(date: Date) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy. MM. dd"
+        outputOptionals.value[0] = formatter.string(from: date)
     }
     
-    var priority: Int? {
-        didSet {
-            guard let priority, let priorityName = Names.priorityNames(rawValue: priority) else { return }
-            delegate?.updateStringResult(String(describing: priorityName), index: 2)
-        }
+    private func updateHashTagResult(hashTag: String) {
+        outputOptionals.value[1] = hashTag
     }
     
-    var image: UIImage? {
-        didSet {
-            delegate?.updateStringResult(image != nil ? "Image Selected": String(), index: 3)
-        }
+    private func updatePriorityResult(priority: Int) {
+        guard let name = Names.priorityNames(rawValue: priority) else { return }
+        outputOptionals.value[2] = String(describing: name)
+    }
+    
+    private func updateImageResult(image: UIImage) {
+        outputOptionals.value[3] = "Image Selected"
     }
 }

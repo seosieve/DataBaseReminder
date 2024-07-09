@@ -10,10 +10,7 @@ import RealmSwift
 
 class RegisterViewController: BaseViewController<RegisterView> {
     
-    let repository = ReminderRepository()
     let model: RegisterModel
-    
-    var stringResultArr = Array(repeating: String(), count: 4)
     
     init(view: RegisterView, model: RegisterModel) {
         self.model = model
@@ -21,8 +18,6 @@ class RegisterViewController: BaseViewController<RegisterView> {
     }
     
     override func configureView() {
-//        print(repository.fileURL)
-        
         ///Configure Nav
         customView.cancelButtonItem.target = self
         customView.cancelButtonItem.action = #selector(cancelButtonPressed)
@@ -36,8 +31,6 @@ class RegisterViewController: BaseViewController<RegisterView> {
         customView.registerTableView.delegate = self
         customView.registerTableView.dataSource = self
         ///Model
-        model.delegate = self
-        ///
         bindData()
     }
     
@@ -46,12 +39,7 @@ class RegisterViewController: BaseViewController<RegisterView> {
     }
     
     @objc func addButtonPressed() {
-//        let reminder = Reminder(title: model.textArr.title, memo: model.textArr.memo, dueDate: model.date, hashTag: model.hashTag, priority: model.priority)
-//        repository.addObject(object: reminder)
-//        if let image = model.image {
-//            FileManagerRepository.addImage(image, reminder.key)
-//        }
-//        
+        model.inputAddAction.value = ()
         NotificationCenter.default.post(name: Names.reloadBundle, object: nil)
         self.dismiss(animated: true)
     }
@@ -59,6 +47,11 @@ class RegisterViewController: BaseViewController<RegisterView> {
     func bindData() {
         model.outputValid.bind { state in
             self.customView.addButtonItem.isEnabled = state
+        }
+        
+        model.outputOptionals.bind { optionals in
+            print(optionals)
+            self.customView.registerTableView.reloadData()
         }
     }
 }
@@ -106,7 +99,7 @@ extension RegisterViewController: UITextViewDelegate {
 //MARK: - UITableViewDelegate, UITableViewDataSource
 extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stringResultArr.count
+        return model.outputOptionals.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -114,7 +107,7 @@ extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell else { return UITableViewCell() }
         let title = Names.registerNames.allCases[indexPath.row].rawValue
         cell.titleLabel.text = title
-        cell.valueLabel.text = stringResultArr[indexPath.row]
+        cell.valueLabel.text = model.outputOptionals.value[indexPath.row]
         return cell
     }
     
@@ -127,29 +120,21 @@ extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//MARK: - TextArrayDelegate
-extension RegisterViewController: ReminderRegisterDelegate {
-    func updateStringResult(_ stringResult: String, index: Int) {
-        stringResultArr[index] = stringResult
-        customView.registerTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-    }
-}
-
 //MARK: - DataTransportDelegate
 extension RegisterViewController: DataTransportDelegate {
     func transportDate(date: Date?) {
-        model.date = date
+        model.inputDateAction.value = date
     }
     
     func transportHashTag(hashTag: String?) {
-        model.hashTag = hashTag
+        model.inputHashTagAction.value = hashTag
     }
     
     func transportPriority(priority: Int?) {
-        model.priority = priority
+        model.inputPriorityAction.value = priority
     }
     
     func transportImage(image: UIImage?) {
-        model.image = image
+        model.inputImageAction.value = image
     }
 }
