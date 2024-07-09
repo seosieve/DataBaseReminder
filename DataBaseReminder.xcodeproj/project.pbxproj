@@ -51,6 +51,9 @@
 		4E0F67D12C3A7E8300BCE025 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67D02C3A7E8300BCE025 /* CalendarView.swift */; };
 		4E0F67D42C3A7EF400BCE025 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 4E0F67D32C3A7EF400BCE025 /* FSCalendar */; };
 		4E0F67D62C3A7FBF00BCE025 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67D52C3A7FBF00BCE025 /* CalendarViewController.swift */; };
+		4E0F67E52C3D1D4C00BCE025 /* ListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67E42C3D1D4C00BCE025 /* ListDetailView.swift */; };
+		4E0F67E72C3D1D9400BCE025 /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67E62C3D1D9400BCE025 /* ListDetailViewController.swift */; };
+		4E0F67E92C3D285900BCE025 /* FileManagerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0F67E82C3D285900BCE025 /* FileManagerRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -110,6 +113,9 @@
 		4E0F67CD2C39799A00BCE025 /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
 		4E0F67D02C3A7E8300BCE025 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		4E0F67D52C3A7FBF00BCE025 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		4E0F67E42C3D1D4C00BCE025 /* ListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailView.swift; sourceTree = "<group>"; };
+		4E0F67E62C3D1D9400BCE025 /* ListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
+		4E0F67E82C3D285900BCE025 /* FileManagerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +196,7 @@
 				4E0F67B62C37DD6500BCE025 /* Bundle */,
 				4E0F67CF2C3A7E6800BCE025 /* Calendar */,
 				4E0F67712C3408EF00BCE025 /* List */,
+				4E0F67E22C3D1C8C00BCE025 /* ListDetail */,
 				4E0F67732C34090600BCE025 /* Register */,
 				4E0F67952C35720300BCE025 /* Date */,
 				4E0F679A2C3577F300BCE025 /* HashTag */,
@@ -286,6 +293,7 @@
 				4E0F67A72C3587D000BCE025 /* Reminder.swift */,
 				4E0F67B42C37D64900BCE025 /* RealmManager.swift */,
 				4E0F67B22C369BC100BCE025 /* ReminderRepository.swift */,
+				4E0F67E82C3D285900BCE025 /* FileManagerRepository.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -324,6 +332,15 @@
 				4E0F67D52C3A7FBF00BCE025 /* CalendarViewController.swift */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		4E0F67E22C3D1C8C00BCE025 /* ListDetail */ = {
+			isa = PBXGroup;
+			children = (
+				4E0F67E42C3D1D4C00BCE025 /* ListDetailView.swift */,
+				4E0F67E62C3D1D9400BCE025 /* ListDetailViewController.swift */,
+			);
+			name = ListDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -421,6 +438,7 @@
 				4E0F678A2C35419100BCE025 /* Colors.swift in Sources */,
 				4E0F67BC2C37E15200BCE025 /* BundleCollectionViewCell.swift in Sources */,
 				4E0F67CE2C39799A00BCE025 /* Date + Extension.swift in Sources */,
+				4E0F67E52C3D1D4C00BCE025 /* ListDetailView.swift in Sources */,
 				4E0F677F2C340D2B00BCE025 /* ListTableViewCell.swift in Sources */,
 				4E0F675A2C34071A00BCE025 /* AppDelegate.swift in Sources */,
 				4E0F677D2C340C1F00BCE025 /* NSObjectProtocol + Extenstion.swift in Sources */,
@@ -441,10 +459,12 @@
 				4E0F67A32C35783C00BCE025 /* PriorityViewController.swift in Sources */,
 				4E0F677A2C340A3C00BCE025 /* BaseViewController.swift in Sources */,
 				4E0F67B52C37D64900BCE025 /* RealmManager.swift in Sources */,
+				4E0F67E92C3D285900BCE025 /* FileManagerRepository.swift in Sources */,
 				4E0F67992C3574BF00BCE025 /* DateViewController.swift in Sources */,
 				4E0F67BA2C37DD9C00BCE025 /* BundleView.swift in Sources */,
 				4E0F679D2C35781300BCE025 /* HashTagView.swift in Sources */,
 				4E0F67C22C391A0900BCE025 /* RegisterModel.swift in Sources */,
+				4E0F67E72C3D1D9400BCE025 /* ListDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

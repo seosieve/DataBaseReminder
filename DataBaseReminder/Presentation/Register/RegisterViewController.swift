@@ -21,7 +21,7 @@ class RegisterViewController: BaseViewController<RegisterView> {
     }
     
     override func configureView() {
-//        print(repository.fileURL)
+        print(repository.fileURL)
         
         ///Configure Nav
         customView.cancelButtonItem.target = self
@@ -46,6 +46,10 @@ class RegisterViewController: BaseViewController<RegisterView> {
     @objc func addButtonPressed() {
         let reminder = Reminder(title: model.textArr.title, memo: model.textArr.memo, dueDate: model.date, hashTag: model.hashTag, priority: model.priority)
         repository.addObject(object: reminder)
+        if let image = model.image {
+            FileManagerRepository.addImage(image, reminder.key)
+        }
+        
         NotificationCenter.default.post(name: Names.reloadBundle, object: nil)
         self.dismiss(animated: true)
     }

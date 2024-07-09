@@ -64,6 +64,16 @@ class ListTableViewCell: BaseTableViewCell {
         label.font = .systemFont(ofSize: 14)
         return label
     }()
+    
+    let listImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 20
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = Colors.contentBlack
+        imageView.isUserInteractionEnabled = true
+        return imageView
+    }()
 
     override func configureView() {
         selectionStyle = .none
@@ -77,6 +87,7 @@ class ListTableViewCell: BaseTableViewCell {
         contentView.addSubview(descriptionLabel)
         contentView.addSubview(dueDateLabel)
         contentView.addSubview(hashTagLabel)
+        contentView.addSubview(listImageView)
     }
 
     override func configureConstraints() {
@@ -111,6 +122,13 @@ class ListTableViewCell: BaseTableViewCell {
             make.top.equalTo(descriptionLabel.snp.bottom).offset(6)
             make.leading.equalTo(dueDateLabel.snp.trailing).offset(8)
             make.bottom.equalToSuperview().offset(-10)
+        }
+        
+        listImageView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(16)
+            make.width.equalTo(100)
+            make.verticalEdges.equalToSuperview().inset(10)
+            make.height.equalTo(listImageView.snp.width).multipliedBy(0.8)
         }
     }
     
@@ -158,6 +176,14 @@ class ListTableViewCell: BaseTableViewCell {
             hashTagLabel.text = "#" + hashTag
         } else {
             hashTagLabel.text = String()
+        }
+        
+        if let image = FileManagerRepository.loadImage(reminder.key) {
+            listImageView.isHidden = false
+            listImageView.image = image
+        } else {
+            listImageView.isHidden = true
+            listImageView.image = UIImage()
         }
     }
 }

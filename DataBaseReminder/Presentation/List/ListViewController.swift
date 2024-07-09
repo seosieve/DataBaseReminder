@@ -16,21 +16,17 @@ final class ListViewController: BaseViewController<ListView> {
     
     override func configureView() {
         ///Configure Nav
-        customView.filterButtonItem.target = self
-        customView.filterButtonItem.action = #selector(filterButtonPressed)
         customView.configureNavigationController(self)
         ///TableView Delegate
         customView.listTableView.delegate = self
         customView.listTableView.dataSource = self
+        ///Sort Menu Delegate
+        customView.delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.post(name: Names.reloadBundle, object: nil)
-    }
-    
-    @objc func filterButtonPressed() {
-        
     }
 }
 
@@ -47,8 +43,13 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource, ListTa
         let reminder = list[indexPath.row]
         cell.configureCell(reminder: reminder)
         cell.delegate = self
-        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = ListDetailViewController(view: ListDetailView())
+        vc.reminder = list[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -75,6 +76,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource, ListTa
     }
     
     func deleteAction(indexPath: IndexPath) {
+        FileManagerRepository.removeImage(list[indexPath.row].key)
         repository.deleteObject(object: list[indexPath.row])
         customView.listTableView.deleteRows(at: [indexPath], with: .fade)
     }
@@ -96,6 +98,23 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource, ListTa
         if let title = self.navigationItem.title, title == Names.BundleNames.complete.title {
             customView.listTableView.deleteRows(at: [indexPath], with: .fade)
         }
+    }
+}
+
+//MARK: - ListSortDelegate
+extension ListViewController: ListSortDelegate {
+    func sortList(action: UIAction) {
+        switch action.title {
+        case "제목순":
+            list = list.sorted(byKeyPath: "title")
+        case "우선순위순":
+            list = list.sorted(byKeyPath: "priority", ascending: false)
+        case "최신순":
+            list = list.sorted(byKeyPath: "dueDate")
+        default:
+            break
+        }
+        customView.listTableView.reloadData()
     }
 }
 

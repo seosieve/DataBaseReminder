@@ -109,4 +109,21 @@ enum Names {
         case SECOND
         case THIRD
     }
+    
+    enum SortNames: CaseIterable {
+        case date
+        case title
+        case priority
+        
+        var title: String {
+            switch self {
+            case .date:
+                return "최신순"
+            case .title:
+                return "제목순"
+            case .priority:
+                return "우선순위순"
+            }
+        }
+    }
 }

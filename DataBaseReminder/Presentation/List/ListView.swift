@@ -8,29 +8,46 @@
 import UIKit
 import SnapKit
 
+protocol ListSortDelegate: AnyObject {
+    func sortList(action: UIAction)
+}
+
 class ListView: BaseView {
     
-    let filterButtonItem = {
+    weak var delegate: ListSortDelegate?
+    
+    let sortArr = Names.SortNames.allCases
+    
+    private lazy var actions = [dateOrder, titleOrder, priorityOrder]
+    
+    private lazy var dateOrder = UIAction(title: sortArr[0].title, state: .on, handler: updateActionStates)
+                                  
+    private lazy var titleOrder = UIAction(title: sortArr[1].title, state: .off, handler: updateActionStates)
+    
+    private lazy var priorityOrder = UIAction(title: sortArr[2].title, state: .off, handler: updateActionStates)
+    
+    private lazy var updateActionStates: (UIAction) -> Void = { action in
+        let actions = self.actions
+        actions.forEach { $0.state = ($0 == action) ? .on : .off }
+        self.filterButtonItem.menu = UIMenu(options: .displayInline, children: actions)
+        self.delegate?.sortList(action: action)
+    }
+    
+    lazy var filterButtonItem = {
         let button = UIBarButtonItem()
         button.image = UIImage(systemName: "ellipsis.circle")
         button.tintColor = Colors.mainBlue
         button.style = .plain
+        button.menu = UIMenu(options: .displayInline, children: [dateOrder, titleOrder, priorityOrder])
         return button
     }()
-    
-    let addButtonItem = {
-        let button = UIBarButtonItem()
-        button.image = UIImage(systemName: "plus.circle")
-        button.tintColor = Colors.mainBlue
-        button.style = .plain
-        return button
-    }()
-    
+
     let listTableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
         tableView.separatorColor = Colors.contentBlack
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100
         tableView.register(ListTableViewCell.self, forCellReuseIdentifier: ListTableViewCell.identifier)
         return tableView
     }()
